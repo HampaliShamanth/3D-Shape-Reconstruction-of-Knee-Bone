@@ -1,0 +1,32 @@
+2021-02-15 21:50:00,733 INFO    MainThread:2256 [wandb_setup.py:_flush():70] setting env: {}
+2021-02-15 21:50:00,734 INFO    MainThread:2256 [wandb_setup.py:_flush():70] multiprocessing start_methods=spawn, using: spawn
+2021-02-15 21:50:00,734 INFO    MainThread:2256 [wandb_setup.py:_flush():70] setting login settings: {}
+2021-02-15 21:50:00,734 INFO    MainThread:2256 [wandb_setup.py:_flush():70] setting login settings: {}
+2021-02-15 21:50:00,734 INFO    MainThread:2256 [wandb_setup.py:_flush():70] setting login settings: {'api_key': 'f6d47c2dc3a2363d2ff133c161216c61c33b8750'}
+2021-02-15 21:50:00,734 INFO    MainThread:2256 [wandb_setup.py:_flush():70] setting login settings: {}
+2021-02-15 21:50:00,734 INFO    MainThread:2256 [wandb_setup.py:_flush():70] setting login settings: {}
+2021-02-15 21:50:00,734 INFO    MainThread:2256 [wandb_setup.py:_flush():70] configuring jupyter hooks <wandb.sdk.wandb_init._WandbInit object at 0x000001C419782DC0>
+2021-02-15 21:50:00,734 INFO    MainThread:2256 [wandb_init.py:_log_setup():319] Logging user logs to D:\OneDrive - University of Waterloo\Thesis\Projects\IC\Python\ML1\Code\wandb\run-20210215_215000-w24etr3v\logs\debug.log
+2021-02-15 21:50:00,734 INFO    MainThread:2256 [wandb_init.py:_log_setup():320] Logging internal logs to D:\OneDrive - University of Waterloo\Thesis\Projects\IC\Python\ML1\Code\wandb\run-20210215_215000-w24etr3v\logs\debug-internal.log
+2021-02-15 21:50:00,735 INFO    MainThread:2256 [wandb_init.py:init():324] calling init triggers
+2021-02-15 21:50:00,735 INFO    MainThread:2256 [wandb_init.py:init():329] wandb.init called with sweep_config: {}
+config: {'epochs': 1, 'layers': [2, 2, 2], 'rollSets': [16, 16, 16], 'batch_size': 1, 'learning_rate': 0.001, 'dataset': 'Easy', 'architecture': 'CNN'}
+2021-02-15 21:50:00,735 INFO    MainThread:2256 [wandb_init.py:init():401] starting backend
+2021-02-15 21:50:00,740 INFO    MainThread:2256 [backend.py:ensure_launched():81] starting backend process...
+2021-02-15 21:50:00,843 INFO    MainThread:2256 [backend.py:ensure_launched():85] started backend process with pid: 15160
+2021-02-15 21:50:00,844 INFO    MainThread:2256 [wandb_init.py:init():410] backend started and connected
+2021-02-15 21:50:00,853 INFO    MainThread:2256 [wandb_init.py:init():433] updated telemetry
+2021-02-15 21:50:00,853 INFO    MainThread:2256 [wandb_init.py:init():456] communicating current version
+2021-02-15 21:50:01,928 INFO    MainThread:2256 [wandb_init.py:init():461] got version response upgrade_message: "wandb version 0.10.19 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2021-02-15 21:50:01,928 INFO    MainThread:2256 [wandb_init.py:init():469] communicating run to backend with 30 second timeout
+2021-02-15 21:50:02,066 INFO    MainThread:2256 [wandb_init.py:init():492] starting run threads in backend
+2021-02-15 21:50:02,100 INFO    MainThread:2256 [wandb_run.py:_console_start():1411] atexit reg
+2021-02-15 21:50:02,101 INFO    MainThread:2256 [wandb_run.py:_redirect():1274] redirect: SettingsConsole.WRAP
+2021-02-15 21:50:02,101 INFO    MainThread:2256 [wandb_run.py:_redirect():1309] Wrapping output streams.
+2021-02-15 21:50:02,101 INFO    MainThread:2256 [wandb_run.py:_redirect():1325] Redirects installed.
+2021-02-15 21:50:02,101 INFO    MainThread:2256 [wandb_init.py:init():515] run started, returning control to user process
+2021-02-15 21:50:02,170 INFO    MainThread:2256 [wandb_watch.py:watch():39] Watching
+2021-02-15 21:50:07,835 INFO    MainThread:2256 [wandb_run.py:finish():1068] finishing run hampalishamanth/pytorch-demo/w24etr3v
+2021-02-15 21:50:07,836 INFO    MainThread:2256 [wandb_init.py:_jupyter_teardown():250] cleaning up jupyter logic
+2021-02-15 21:50:07,836 INFO    MainThread:2256 [jupyter.py:save_history():208] not saving jupyter history

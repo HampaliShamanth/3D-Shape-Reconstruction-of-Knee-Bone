@@ -1,0 +1,43 @@
+2021-02-15 21:50:05,695 INFO    MainThread:18788 [wandb_setup.py:_flush():70] setting env: {}
+2021-02-15 21:50:05,695 INFO    MainThread:18788 [wandb_setup.py:_flush():70] multiprocessing start_methods=spawn, using: spawn
+2021-02-15 21:50:05,695 INFO    MainThread:18788 [wandb_setup.py:_flush():70] setting login settings: {}
+2021-02-15 21:50:05,695 INFO    MainThread:18788 [wandb_setup.py:_flush():70] setting login settings: {}
+2021-02-15 21:50:05,695 INFO    MainThread:18788 [wandb_init.py:_log_setup():319] Logging user logs to D:\OneDrive - University of Waterloo\Thesis\Projects\IC\Python\ML1\Code\wandb\run-20210215_215005-cbkaht75\logs\debug.log
+2021-02-15 21:50:05,696 INFO    MainThread:18788 [wandb_init.py:_log_setup():320] Logging internal logs to D:\OneDrive - University of Waterloo\Thesis\Projects\IC\Python\ML1\Code\wandb\run-20210215_215005-cbkaht75\logs\debug-internal.log
+2021-02-15 21:50:05,696 INFO    MainThread:18788 [wandb_init.py:init():324] calling init triggers
+2021-02-15 21:50:05,696 INFO    MainThread:18788 [wandb_init.py:init():329] wandb.init called with sweep_config: {}
+config: {'epochs': 1, 'layers': [2, 2, 2], 'rollSets': [16, 16, 16], 'batch_size': 1, 'learning_rate': 0.001, 'dataset': 'Easy', 'architecture': 'CNN'}
+2021-02-15 21:50:05,696 INFO    MainThread:18788 [wandb_init.py:init():401] starting backend
+2021-02-15 21:50:05,701 INFO    MainThread:18788 [backend.py:ensure_launched():81] starting backend process...
+2021-02-15 21:50:05,710 ERROR   MainThread:18788 [wandb_init.py:init():742] error
+Traceback (most recent call last):
+  File "C:\Users\hsshaman\Anaconda3\lib\site-packages\wandb\sdk\wandb_init.py", line 716, in init
+    run = wi.init()
+  File "C:\Users\hsshaman\Anaconda3\lib\site-packages\wandb\sdk\wandb_init.py", line 403, in init
+    backend.ensure_launched(
+  File "C:\Users\hsshaman\Anaconda3\lib\site-packages\wandb\sdk\backend\backend.py", line 83, in ensure_launched
+    self.wandb_process.start()
+  File "C:\Users\hsshaman\Anaconda3\lib\multiprocessing\process.py", line 121, in start
+    self._popen = self._Popen(self)
+  File "C:\Users\hsshaman\Anaconda3\lib\multiprocessing\context.py", line 326, in _Popen
+    return Popen(process_obj)
+  File "C:\Users\hsshaman\Anaconda3\lib\multiprocessing\popen_spawn_win32.py", line 45, in __init__
+    prep_data = spawn.get_preparation_data(process_obj._name)
+  File "C:\Users\hsshaman\Anaconda3\lib\multiprocessing\spawn.py", line 154, in get_preparation_data
+    _check_not_importing_main()
+  File "C:\Users\hsshaman\Anaconda3\lib\multiprocessing\spawn.py", line 134, in _check_not_importing_main
+    raise RuntimeError('''
+RuntimeError: 
+        An attempt has been made to start a new process before the
+        current process has finished its bootstrapping phase.
+
+        This probably means that you are not using fork to start your
+        child processes and you have forgotten to use the proper idiom
+        in the main module:
+
+            if __name__ == '__main__':
+                freeze_support()
+                ...
+
+        The "freeze_support()" line can be omitted if the program
+        is not going to be frozen to produce an executable.

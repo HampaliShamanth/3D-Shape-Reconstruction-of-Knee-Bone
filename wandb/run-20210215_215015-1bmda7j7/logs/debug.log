@@ -1,0 +1,25 @@
+2021-02-15 21:50:15,227 INFO    MainThread:10500 [wandb_setup.py:_flush():70] setting env: {}
+2021-02-15 21:50:15,227 INFO    MainThread:10500 [wandb_setup.py:_flush():70] multiprocessing start_methods=spawn, using: spawn
+2021-02-15 21:50:15,227 INFO    MainThread:10500 [wandb_setup.py:_flush():70] setting login settings: {}
+2021-02-15 21:50:15,227 INFO    MainThread:10500 [wandb_setup.py:_flush():70] setting login settings: {}
+2021-02-15 21:50:15,227 INFO    MainThread:10500 [wandb_init.py:_log_setup():319] Logging user logs to D:\OneDrive - University of Waterloo\Thesis\Projects\IC\Python\ML1\Code\wandb\run-20210215_215015-1bmda7j7\logs\debug.log
+2021-02-15 21:50:15,228 INFO    MainThread:10500 [wandb_init.py:_log_setup():320] Logging internal logs to D:\OneDrive - University of Waterloo\Thesis\Projects\IC\Python\ML1\Code\wandb\run-20210215_215015-1bmda7j7\logs\debug-internal.log
+2021-02-15 21:50:15,228 INFO    MainThread:10500 [wandb_init.py:init():324] calling init triggers
+2021-02-15 21:50:15,228 INFO    MainThread:10500 [wandb_init.py:init():329] wandb.init called with sweep_config: {}
+config: {'epochs': 1, 'layers': [2, 2, 2], 'rollSets': [16, 16, 16], 'batch_size': 1, 'learning_rate': 0.001, 'dataset': 'Easy', 'architecture': 'CNN'}
+2021-02-15 21:50:15,229 INFO    MainThread:10500 [wandb_init.py:init():401] starting backend
+2021-02-15 21:50:15,237 INFO    MainThread:10500 [backend.py:ensure_launched():81] starting backend process...
+2021-02-15 21:50:16,647 INFO    MainThread:10500 [backend.py:ensure_launched():85] started backend process with pid: 14776
+2021-02-15 21:50:16,648 INFO    MainThread:10500 [wandb_init.py:init():410] backend started and connected
+2021-02-15 21:50:16,649 INFO    MainThread:10500 [wandb_init.py:init():433] updated telemetry
+2021-02-15 21:50:16,650 INFO    MainThread:10500 [wandb_init.py:init():456] communicating current version
+2021-02-15 21:50:18,015 INFO    MainThread:10500 [wandb_init.py:init():461] got version response upgrade_message: "wandb version 0.10.19 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2021-02-15 21:50:18,016 INFO    MainThread:10500 [wandb_init.py:init():469] communicating run to backend with 30 second timeout
+2021-02-15 21:50:18,175 INFO    MainThread:10500 [wandb_init.py:init():492] starting run threads in backend
+2021-02-15 21:50:18,213 INFO    MainThread:10500 [wandb_run.py:_console_start():1411] atexit reg
+2021-02-15 21:50:18,214 INFO    MainThread:10500 [wandb_run.py:_redirect():1274] redirect: SettingsConsole.WRAP
+2021-02-15 21:50:18,215 INFO    MainThread:10500 [wandb_run.py:_redirect():1309] Wrapping output streams.
+2021-02-15 21:50:18,215 INFO    MainThread:10500 [wandb_run.py:_redirect():1325] Redirects installed.
+2021-02-15 21:50:18,215 INFO    MainThread:10500 [wandb_init.py:init():515] run started, returning control to user process
+2021-02-15 21:50:18,308 INFO    MainThread:10500 [wandb_watch.py:watch():39] Watching

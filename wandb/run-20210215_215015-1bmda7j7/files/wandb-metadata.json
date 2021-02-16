@@ -1,0 +1,16 @@
+{
+    "os": "Windows-10-10.0.18362-SP0",
+    "python": "3.8.3",
+    "heartbeatAt": "2021-02-16T02:50:18.192728",
+    "startedAt": "2021-02-16T02:50:15.225637",
+    "docker": null,
+    "cpu_count": 12,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "codePath": "Wandb_network.py",
+    "program": "D:/OneDrive - University of Waterloo/Thesis/Projects/IC/Python/ML1/Code/Wandb_network.py",
+    "host": "mmepc10",
+    "username": "hsshaman",
+    "executable": "C:\\Users\\hsshaman\\Anaconda3\\python.exe"
+}
