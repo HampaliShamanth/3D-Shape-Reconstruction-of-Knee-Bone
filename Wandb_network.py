@@ -30,7 +30,7 @@ wandb.login()
 config = dict(
     epochs=10,
     layers=[2, 2, 2],
-    rollSets=[16, 16, 16, 16],
+    rollSets=[8, 8, 8, 8],
     batch_size=16,
     learning_rate=0.001,
     dataset="Easy",
@@ -48,10 +48,9 @@ def model_pipeline(hyperparameters):
 
         # make the model, data, and optimization problem
         model, train_loader, test_loader, criterion, optimizer = make(config)
-        print(model)
 
         # and use them to train the model
-        train(model, train_loader, criterion, optimizer, config)
+        train(model, train_loader, criterion, optimizer, config, test_loader)
 
         # and test its final performance
         test(model, test_loader)
@@ -77,7 +76,8 @@ def make(config):
                                                 [dataset.__len__() - total_testImages, total_testImages])
 
     train_loader = DataLoader(dataset=train, batch_size=config.batch_size, shuffle=True, pin_memory=True, num_workers=8)
-    test_loader = DataLoader(dataset=test, batch_size=config.batch_size*2, shuffle=True, pin_memory=True, num_workers=8)
+    test_loader = DataLoader(dataset=test, batch_size=config.batch_size * 2, shuffle=True, pin_memory=True,
+                             num_workers=8)
 
     # Make the model
     model = MyNet(layers=config.layers, rollSets=config.rollSets).to(device)
@@ -92,7 +92,7 @@ def make(config):
 ##
 
 
-def train(model, loader, criterion, optimizer, config):
+def train(model, loader, criterion, optimizer, config, test_loader):
     # tell wandb to watch what the model gets up to: gradients, weights, and more!
     wandb.watch(model, criterion, log="all", log_freq=10)
 
@@ -122,6 +122,8 @@ def train(model, loader, criterion, optimizer, config):
             # if (example_ct + 1) == loader.__len__():
             #     train_log(loss, example_ct, epoch, output, target)
         train_log(loss, example_ct, epoch, output, target)
+        test(model, test_loader)
+
 
 def train_log(loss, example_ct, epoch, output, target):
     loss = float(loss)
@@ -137,6 +139,7 @@ def train_log(loss, example_ct, epoch, output, target):
     # where the magic happens
     wandb.log({"epoch": epoch, "loss": loss, "Mean_train": Mean, "Max_train": Max}, step=example_ct)
     print(f"Loss after " + str(example_ct).zfill(5) + f" examples: {loss:.3f}")
+
 
 
 def test(model, test_loader):
@@ -159,27 +162,18 @@ def test(model, test_loader):
             Mean[batch_idx] = torch.mean(accuracy)
             Max[batch_idx] = torch.max(accuracy)
 
+
         print(f"Mean {torch.mean(Mean)} max {torch.max(Max)}")
 
-        wandb.log({"Mean_test": Mean, "Max_test": Max})
+        wandb.log({"Mean_test": torch.mean(Mean), "Max_test": torch.max(Max)})
 
-    # Save the model in the exchangeable ONNX format
-    torch.onnx.export(model, data, "model1.onnx")
-    wandb.save("model1.onnx")
+        # Save the model in the exchangeable ONNX format
+        #torch.onnx.export(model, data, "model1.onnx")
+        #wandb.save("model1.onnx")
+    model.train()
 
 
 # Build, train and analyze the model with the pipeline
-# model = model_pipeline(config)
-with wandb.init(project="pytorch-demo", config=config):
-    # access all HPs through wandb.config, so logging matches execution!
-    config = wandb.config
 
-    # make the model, data, and optimization problem
-    model, train_loader, test_loader, criterion, optimizer = make(config)
-    print(model)
 
-    # and use them to train the model
-    train(model, train_loader, criterion, optimizer, config)
-
-    # and test its final performance
-    test(model, test_loader)
+model = model_pipeline(config)

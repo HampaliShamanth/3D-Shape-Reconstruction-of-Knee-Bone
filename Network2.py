@@ -10,7 +10,7 @@ from tqdm import tqdm
 
 # Hyperparameters
 learning_rate = 1e-3
-batch_size = 16
+batch_size = 1
 num_epochs = 10
 layers = [3, 3, 3]
 rollSets = [0, 0, 0]

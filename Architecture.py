@@ -2,18 +2,7 @@ import torch
 import torch.nn as nn
 
 
-def rollTensor(T, N):
-    if (N > 0):
-        k = 0
-        tiles = 4
-        tileShape = int(T.shape[3] / tiles)
-        for i in range(tiles):
-            for j in range(tiles):
-                set = torch.linspace(k, k + 16 * (N - 1), N).numpy()
-                T[:, set] = torch.roll(T[:, set], shifts=(tileShape * i, tileShape * j), dims=(0, 1))
-                k += 1
 
-    return T
 
 
 class block(nn.Module):
@@ -30,6 +19,18 @@ class block(nn.Module):
         self.rollSets = rollSets
 
     def forward(self, x):
+        def rollTensor(T, N):
+            if (N > 0):
+                k = 0
+                tiles = 4
+                tileShape = int(T.shape[3] / tiles)
+                for i in range(tiles):
+                    for j in range(tiles):
+                        set = torch.linspace(k, k + 16 * (N - 1), N).numpy()
+                        T[:, set] = torch.roll(T[:, set], shifts=(tileShape * i, tileShape * j), dims=(0, 1))
+                        k += 1
+
+            return T
         identity = x.clone()
 
         x = self.relu(self.bn1(self.conv1(x)))
@@ -69,6 +70,18 @@ class MyNet(nn.Module):
         self.fc2 = nn.Linear(self.channels, vector_coordinates)
 
     def forward(self, x):
+        def rollTensor(T, N):
+            if (N > 0):
+                k = 0
+                tiles = 4
+                tileShape = int(T.shape[3] / tiles)
+                for i in range(tiles):
+                    for j in range(tiles):
+                        set = torch.linspace(k, k + 16 * (N - 1), N).numpy()
+                        T[:, set] = torch.roll(T[:, set], shifts=(tileShape * i, tileShape * j), dims=(0, 1))
+                        k += 1
+
+            return T
         x = self.relu(self.bn1(self.conv1(x)))  # 256
 
         x = rollTensor(x, N=self.rollSets)

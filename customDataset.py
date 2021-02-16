@@ -4,6 +4,7 @@ from skimage import io
 from torch.utils.data import (Dataset)
 import numpy as np
 
+
 class EdgeImages(Dataset):
     def __init__(self, root_dir, transform=None):
         self.root_dir = root_dir
