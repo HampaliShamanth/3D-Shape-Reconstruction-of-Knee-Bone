@@ -28,9 +28,9 @@ wandb.login()
 
 ##
 config = dict(
-    epochs=16,
-    layers=[4, 4, 4],
-    rollSets=[3, 3, 3],
+    epochs=10,
+    layers=[2, 2, 2],
+    rollSets=[16, 16, 16, 16],
     batch_size=16,
     learning_rate=0.001,
     dataset="Easy",
@@ -65,13 +65,19 @@ def model_pipeline(hyperparameters):
 def make(config):
     # Make the data
     total_testImages = 256
-    path = 'drive/MyDrive/EdgeImages'
+
+    if device.type == 'cpu':
+        path = 'D:\OneDrive - University of Waterloo\Thesis\Projects\IC\Python\ML1\EdgeImages'
+    else:
+        # Running on cloud
+        path = 'drive/MyDrive/EdgeImages'
+
     dataset = EdgeImages(root_dir=path, transform=transforms.ToTensor())
     train, test = torch.utils.data.random_split(dataset,
                                                 [dataset.__len__() - total_testImages, total_testImages])
 
     train_loader = DataLoader(dataset=train, batch_size=config.batch_size, shuffle=True, pin_memory=True, num_workers=8)
-    test_loader = DataLoader(dataset=test, batch_size=config.batch_size, shuffle=True, pin_memory=True, num_workers=8)
+    test_loader = DataLoader(dataset=test, batch_size=config.batch_size*2, shuffle=True, pin_memory=True, num_workers=8)
 
     # Make the model
     model = MyNet(layers=config.layers, rollSets=config.rollSets).to(device)
@@ -93,7 +99,7 @@ def train(model, loader, criterion, optimizer, config):
     # Run training and track with wandb
     total_batches = len(loader) * config.epochs
     example_ct = 0  # number of examples seen
-    batch_ct = 0
+
     for epoch in tqdm(range(config.epochs)):
         for _, (data, target) in enumerate(loader):
             data, target = data.to(device), target.to(device)
@@ -111,13 +117,11 @@ def train(model, loader, criterion, optimizer, config):
             optimizer.step()
 
             example_ct += len(data)
-            batch_ct += 1
 
-            # Report metrics every 25th batch
-            if ((batch_ct + 1) % 25) == 0:
-                train_log(loss, example_ct, epoch, output, target)
-
-
+            # Report metrics at the end of the loop
+            # if (example_ct + 1) == loader.__len__():
+            #     train_log(loss, example_ct, epoch, output, target)
+        train_log(loss, example_ct, epoch, output, target)
 
 def train_log(loss, example_ct, epoch, output, target):
     loss = float(loss)
@@ -165,4 +169,17 @@ def test(model, test_loader):
 
 
 # Build, train and analyze the model with the pipeline
-model = model_pipeline(config)
+# model = model_pipeline(config)
+with wandb.init(project="pytorch-demo", config=config):
+    # access all HPs through wandb.config, so logging matches execution!
+    config = wandb.config
+
+    # make the model, data, and optimization problem
+    model, train_loader, test_loader, criterion, optimizer = make(config)
+    print(model)
+
+    # and use them to train the model
+    train(model, train_loader, criterion, optimizer, config)
+
+    # and test its final performance
+    test(model, test_loader)
