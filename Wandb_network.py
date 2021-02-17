@@ -141,7 +141,6 @@ def train_log(loss, example_ct, epoch, output, target):
     print(f"Loss after " + str(example_ct).zfill(5) + f" examples: {loss:.3f}")
 
 
-
 def test(model, test_loader):
     model.eval()
     Mean = torch.zeros(1000, 1)
@@ -162,18 +161,17 @@ def test(model, test_loader):
             Mean[batch_idx] = torch.mean(accuracy)
             Max[batch_idx] = torch.max(accuracy)
 
-
         print(f"Mean {torch.mean(Mean)} max {torch.max(Max)}")
 
         wandb.log({"Mean_test": torch.mean(Mean), "Max_test": torch.max(Max)})
 
         # Save the model in the exchangeable ONNX format
-        #torch.onnx.export(model, data, "model1.onnx")
-        #wandb.save("model1.onnx")
+        # torch.onnx.export(model, data, "model1.onnx")
+        # wandb.save("model1.onnx")
     model.train()
 
 
 # Build, train and analyze the model with the pipeline
-
-
 model = model_pipeline(config)
+
+
