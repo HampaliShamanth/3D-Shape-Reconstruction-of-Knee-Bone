@@ -1,5 +1,6 @@
 import torch
 import torch.nn as nn
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 
 class rollTensor(nn.Module):
@@ -28,7 +29,7 @@ class rollTensor(nn.Module):
                     LeftI[k] = torch.roll(I, (tileShape * i), 0)
                     RightI[k] = torch.roll(I, (tileShape * j), 1)
                     k += 1
-        return LeftI, RightI
+        return LeftI.to(device), RightI.to(device)
 
 
 class block(nn.Module):
